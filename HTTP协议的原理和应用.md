@@ -4,7 +4,7 @@
 HTTP 非常重要和基础
 
 ## 经典网络五层模型
-![经典网络五层模型](https://upload-images.jianshu.io/upload_images/13548275-88019f07df712ac2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/format/webp)
+![经典网络五层模型](https://github.com/CRONWMMM/IT-output/blob/master/images/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B.png)
 
 在每台计算机设备上，都有这么一套系统链路的关系，来保证网络传输的正常进行，因为统一集成了这么一套经典模型，所以自己使用的计算机也是可以作为一台服务器来提供网络服务的。
 
