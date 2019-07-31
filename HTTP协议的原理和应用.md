@@ -139,10 +139,40 @@ HTTP 非常重要和基础
 ### HTTP 报文
 ![HTTP报文格式](https://github.com/CRONWMMM/IT-output/blob/master/images/HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F.jpg)
 
-`HTTP` 是以请求和响应的形式存在的，有发起方主动发起一个 `HTTP` 请求，然后由响应方回应，双方按照一定的报文格式进行数据的互传，上图是 `HTTP` 请求和响应包文的大概格式，由“首行”、“首部”和主体构成。
-1. 首行，首行并不属于 `Http Headers` ，包含了：
-    - `HTTP Method`（`GET`、`POST`、`PUT`、`DELETE` 等 `HTTP Method` ）
-    - 
+`HTTP` 是以请求和响应的形式存在的，由于发起方主动发起一个 `HTTP` 请求，然后由响应方回应，双方按照一定的报文格式进行数据的互传，上图是 `HTTP` 请求和响应包文的大概格式，由“首行”、“首部”和“主体”构成。
+
+#### 首行
+首行并不属于 `Http Headers` ，它包含了：
+1. **HTTP Method**（`GET`、`POST`、`PUT`、`DELETE` 等 ），不同的 `HTTP Method` 有不同的语意。
+
+    HTTP Method | 对应予以
+    ---         | ---
+    GET         | 查询
+    POST        | 新增
+    PUT         | 修改
+    DELETE      | 删除
+    
+    > `HTTP Method` 只是 `HTTP` 协议推崇的一种规范，就像 `ESLint`，你可以选择遵循，也可以选择不遵循，它们所作的事情实质上没有差别，只是语义化更明确。 
+    
+2. **URL**请求资源的地址，这个地址只会包含请求的路由地址。
+3. **协议的版本**，`HTTP 1.0 / HTTP 1.1 / HTTP 2`。
+4. **HTTP 返回状态码**（响应报文首行包含）
+    > `HTTP` 定义了40个标准状态代码，可用于传递客户端请求的结果，状态代码分为以下五类，关于各个分段下的返回状态码信息可以参考 [HTTP 响应码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)：
+    
+    ![HTTP 返回码](https://github.com/CRONWMMM/IT-output/blob/master/images/HTTP%E8%BF%94%E5%9B%9E%E7%A0%81%EF%BC%88%E5%A4%A7%E7%B1%BB%EF%BC%89.jpg)
+    
+    > 这边需要注意的一点是，一个好的 HTTP 应用服务应该是有完善的 HTTP status code 的返回信息的，即访问者单从 HTTP status code 上就能得知当前 HTTP 请求的状态信息。
+    > 而目前我们大部分的开发模式下的 HTTP 返回码，只有 `200` 和 `500`。服务端的同学会先把 `200` 返回过来，然后再告诉你出了什么 “没登录” / “没认证” / “没权限” 这一类的问题。
+    > 业界也有一句戏言：**又不是不能用**，其实这种开发方式是不正确的，不管从代码的维护性还是个人自身发展角度，我们都需要尽量避免这种问题。
+    
+#### 首部
+首部，即 `HTTP Header`，首部换行后的信息都是 `HTTP Header`
+
+#### 主体
+主体，即 `HTTP body`，HTTP Header` 信息和主体信息间以一个空行 + 一个换行来区分。
+
+#### HTTP status code
+HTTP status code
 
 ## URI、URL 和 URN
 ### URI 
