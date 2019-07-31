@@ -1,4 +1,4 @@
-# 【基础】HTTP协议的原理及应用
+# 【基础】HTTP、TCP/IP 协议的原理及应用
 
 ## 前言
 HTTP 非常重要和基础
@@ -147,10 +147,12 @@ HTTP 非常重要和基础
 
     HTTP Method | 对应予以
     ---         | ---
-    GET         | 查询
-    POST        | 新增
-    PUT         | 修改
-    DELETE      | 删除
+    GET         | 一般用于获取服务器资源
+    POST        | 一般用于传输实体主体
+    PUT         | 一般用于传输文件
+    DELETE      | 用于删除文件
+    HEAD        | 用于获取报文首部，不返回报文主体
+    OPTIONS     | 用于询问请求URI资源支持的方法
     
     > `HTTP Method` 只是 `HTTP` 协议推崇的一种规范，就像 `ESLint`，你可以选择遵循，也可以选择不遵循，它们所作的事情实质上没有差别，只是语义化更明确。 
     
@@ -175,11 +177,36 @@ HTTP 非常重要和基础
 HTTP status code
 
 ## URI、URL 和 URN
+既然说到 `HTTP` 就不得不提一嘴 `URI`、`URL` 和 `URN`，在网络世界里，所有资源的存在地址都是被标识且唯一的，`HTTP` 存在的价值，就是通过这些资源地址，以某种方式获取和操作这些资源实体。
+先来看一张图：
+
+![URI、URL和URN](https://github.com/CRONWMMM/IT-output/blob/master/images/URI_URL_URN.jpg)
+
 ### URI 
-Uniform Resource Identifier/统一资源标志符
+ - Uniform Resource Identifier，统一资源标识符，简称为 `URI`。
+ - 每个 Web 服务器都有一个 `URI` 标识符，它在世界范围内唯一标识并定位信息资源，一个资源信息有了 `URI` 标识以后，在互联网上就能通过一个固定的地址访问到这个资源。
+ - 它具有两种形式，URN （统一资源名）、URL（统一资源定位符），也就是说 `URL` 和 `URN` 是它的子集。
 
 ### URL
-Uniform Resource Locator/统一资源定位器
+Uniform Resource Locator，统一资源定位符，简称 `URL`，下图是一个完整的 `URL` 组成。
+
+![URL 完整组成格式](https://github.com/CRONWMMM/IT-output/blob/master/images/URL%E5%AE%8C%E6%95%B4%E7%BB%84%E6%88%90%E6%A0%BC%E5%BC%8F.jpg)
+
+一个完整的 `URL` 从左到右包含如下部分：
+1. **schema** 标识了这个资源地址所基于的访问协议，常见的比如：`HTTP` 和 `FTP`。
+2. **user information** 标识了用户信息（如果这个资源需要用户信息认证的话），不过一般现在的认证都不采用这种方式，一来输入非常麻烦，二来不安全。
+3. **host** 标识了资源的域信息，可以是域名，也可以是 `IP` ，这块的作用主要是找到资源所存放的物理服务器地址。
+4. **port** 端口号，一个物理服务器，通过开启不同的端口，就同时可以运行多个 web 服务器，资源文件会部署在某一个 web 服务器的某一个地方，而端口号就是用来定位资源存在的 web 服务器的。
+5. **path** 路径，或者叫路由，一个 web 服务器下有许多目录，一般 path 就是用来定位到资源文件所存放的目录的。由于现在很多的 web 应用非常庞大，这个路径也不一定就是目录地址，也可能是 web 服务器指定的静态资源文件的请求地址。
+6. **query** 查询字符串，一般用于 `GET` 查询，传递查询参数。
+7. **fragment** 片段，哈希，或者叫锚点，主要用于前端文档的定位，或者是前端渲染时控制路由跳转的手段。
+
+> 这里需要注意将 `URL` 与网址区别开来。
+> `URL` 不仅仅包含了网页的资源地址，还包含了组成网页所需的图片、视频等超文本资源，以及 css js 等资源地址。
+> 网址本质上是 `IP` 地址的一个更有辨别度的映射，在通过 `DNS` 解析之后，浏览器最先拿到的是 html 文档的 `URL` 地址，根据浏览器对 Html 文档的解析，继续通过网页内其他资源文件的 `URL` 获取对应的资源文件。
+
+### URN
+Uniform Resource Name，统一资源名称，简称 `URN`
 
 ## HTTP 请求
 
@@ -207,3 +234,5 @@ Uniform Resource Locator/统一资源定位器
 ## 什么是长链接，为什么需要长链接
 
 ## HTTPS 的信道复用及性能优化
+
+## 相关面试题汇总
