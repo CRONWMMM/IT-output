@@ -240,9 +240,11 @@ https://www.juejin.com:80 | http://www.juejin.com:80  | 失败（协议不同）
 https://www.juejin.com:80 | https://www.juejin.cn:80  | 失败（域名不同）
 https://www.juejin.com:80 | https://www.juejin.com:90 | 失败（端口不同）
 
-对于跨域的两点需要明确：
+对于跨域的几点需要明确：
 1. **跨域，是浏览器提供的一种保护手段**，服务端是不存在跨域这一说的。这也就是为什么现在前后端分离的开发模式下，前端比较依赖 `webpack-dev-server` 启动代理服务来中转和代理后台接口的原因，因为两个服务器之间相互通信是没有跨域障碍的。
-2. **跨域，是对于 Ajax 请求来说的，浏览器获取不同源服务器下的静态资源，是没有跨域限制的**，这也是 `JSONP` 跨域请求得以实现的本质。
+2. **跨域，是对于 XMLHttpRequest 来说的，浏览器获取不同源服务器下的静态资源，是没有跨域限制的**，这也是 `JSONP` 跨域请求得以实现的本质。
+3. 不同于 XMLHttpRequest 的是，**通过 src 属性加载的脚本资源，浏览器限制了 Javascript 的权限，使其不能读写、返回内容**。
+4. 对于浏览器来说，除了 DOM 、Cookie、XMLHttpRequest 会收到同源策略限制以外，一些常见的插件，比如 Flash、Java Applet 、Silverlight、Google Gears 等也都有自己的控制策略。
 
 > 当浏览器向不同域的服务器发送请求时，请求是真能发出去，对方服务端也是真能接收到请求，并且真能给你的浏览器响应，浏览器也真能接收到有效数据。
 > 但是，如果在跨域的情况下、服务端返回数据的响应头里的 `Access-Control-Allow-Origin` 字段，没有把当前域名列进白名单，那么浏览器会把服务端返回的数据给藏起来，不告诉你，然后给你抛个 `Access-Control-Allow-Origin` 的错误。
