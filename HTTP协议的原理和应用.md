@@ -316,6 +316,9 @@ https://www.juejin.com:80 | https://www.juejin.com:90 |跨域（端口不同）
 - 网络请求
 
 #### Service Worker
+
+> Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。
+
 - 浏览器优先查找。
 - 持久存储。
 - 可以更加灵活地控制存储的内容，可以选择缓存哪些文件、定义缓存文件的路由匹配规则等。
@@ -351,7 +354,7 @@ max-age           | （单位/秒）设置缓存的过期时间，过期需要�
 s-maxage          | （单位/秒）覆盖 max-age，作用一样，只在代理服务器中生效
 max-stale         | （单位/秒）表示即使缓存过期，也使用这个过期缓存
 no-store          | 禁止进行缓存
-no-transform      | 不得对资源进行转换或转变，Content-Encoding、Content-Range、Content-Type等HTTP头不能由代理修改。
+no-transform      | 不得对资源进行转换或压缩等操作，Content-Encoding、Content-Range、Content-Type 等 HTTP 头不能由代理修改（有时候资源比较大的情况下，代理服务器可能会自行做压缩处理，这个指令就是为了防止这种情况）。
 no-cache          | 强制确认缓存：即每次使用本地缓存之前，需要请求服务器，查看缓存是否失效，若未过期（注：实际就是返回304），则缓存才使用本地缓存副本。
 must-revalidate   | 缓存验证确认：意味着缓存在考虑使用一个陈旧的资源时，必须先验证它的状态，已过期的缓存将不被使用
 proxy-revalidate  | 与 must-revalidate 作用相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略。
@@ -359,13 +362,72 @@ proxy-revalidate  | 与 must-revalidate 作用相同，但它仅适用于共享�
 ![Cache-Control 流程图](https://github.com/CRONWMMM/IT-output/blob/master/images/Cache-Control.jpg)
 
 ## 缓存校验
-> 在缓存中，我们需要一个机制来验证缓存是否有效。比如服务器的资源更新了，客户端需要及时刷新缓存；又或者客户端的资源过了有效期，但服务器上的资源还是旧的，此时并不需要重新发送。
+
+> 在浏览器使用缓存的过程中，为了配合 Cache-Control 中 no-cache ，我们还需要一个机制来验证缓存是否有效。比如服务器的资源更新了，客户端需要及时刷新缓存；又或者客户端的资源过了有效期，但服务器上的资源还是旧的，此时并不需要重新发送。
 > 缓存校验就是用来解决这些问题的，在http 1.1 中，我们主要关注下 `Last-Modified` 和 `ETag` 这两个字段。
+
+### Last-Modified
+
+顾名思义，就是资源的最新一次修改时间。当客户端访问服务端的资源，服务端会将这个 `Last-Modified` 值返回给客户端，客户端收到之后，下次发送请求就会将服务端返回回来的 `Last-Modified` 值装在 `If-Modified-Since` 或者 `If-Unmodified-Since` 里，发送给服务端进行缓存校验。
+
+这样服务器就可以通过读取 `If-Modified-Since` 或 `If-UnModified-Since` 的值，和本地的 `Last-Modified` 值做对比校验。如果校验发现这两个值是一样的，就代表本次请求的资源文件没有被修改过，那么服务器就会告诉浏览器，资源有效，可以继续使用，否则就需要使用最新的资源。
+
+来看一下下面的两张图：
+
+当请求服务端的 `script.js` 的脚本资源时，可以看到服务端返回了 `Last-Modified`，里面记录了该资源最后一次的修改时间
+
+![Last-Modified](https://github.com/CRONWMMM/IT-output/blob/master/images/Last-Modified.jpg)
+
+当客户端下次再次发起请求，会携带上这个过期时间给服务端进行验证
+
+![If-Modified-since.jpg](https://github.com/CRONWMMM/IT-output/blob/master/images/If-Modified-since.jpg)
+
+来看下服务端的部分代码：
+
+```js
+const http = require('http');
+const fs = require('fs');
+http.createServer((request, response) => {
+   const ifModifiedSince = request.headers['If-Modified-Since'];
+   const lastModified = 'Web Aug 19 2019 19:01:15 GMT+0800 (China Standard Time)';
+    
+   if (request.url === '/') {
+       const html = fs.readFileSync('test.html', 'utf-8');
+       
+       response.writeHead(200, {
+           'Content-Type': 'text/html'
+       });
+       response.end(html);
+   }
+   if (request.url === '/script.js') {
+       const js = fs.readFileSync('script.js', 'utf-8');
+       let status = 200;
+       // 如果读取到的 If-Modified-Since 和 lastModified 相同，则设置头部 304 表示可使用缓存
+       if (ifModifiedSince === lastModified) {
+           status = 304;
+           response.end('');
+       }
+       response.writeHead(status, {
+           'Content-Type': 'text/javascript',
+           'Cache-Control': 'no-cache,max-age=2000',
+           'Last-Modified': lastModified
+       });
+       response.end(js);
+   }
+});
+
+```
+
+### ETag
+
+`Etag` 的作用本质上和 `Last-Modified` 差别不大。相比于 `Last-Modified` 使用最后修改日期来比较资源是否失效的缓存校验策略，`ETag` 则是通过**数据签名**来做一个更加严格的缓存验证。
+
+所谓**数据签名**，其实就是通过对资源内容进行一个唯一的签名算法，一旦资源内容改变，那么签名必将改变，服务端就以此签名作为暗号，来标记缓存的有效性。
 
 ## HTTP 性能优化
 
 影响 HTTP 网络请求的因素主要有两个：**带宽和延迟**。
-1. 目前的服务商提供的带宽动不动就是 100M 200M，带宽的对于 `HTTP` 请求速度的影响已经很小了。如果带宽依旧不够，推荐升级带宽。
+1. 目前的服务商提供的带宽能力达到 100M 200M 已经是基本操作，带宽的对于 `HTTP` 请求速度的影响已经很小了。如果带宽依旧不够，推荐升级带宽。
 2. 延迟：
     - **浏览器阻塞**：浏览器对于同一个域名，同时开放的连接数是有限的，如果请求数量比较多，后续的请求就先被阻塞。
     - **DNS查询**：为了拿到服务器的 IP ，浏览器会拿着域名去做 `DNS 解析`，这个过程也会耗时，一般可以通过利用 `DNS 缓存` 来做这方面的优化处理。
@@ -377,3 +439,20 @@ proxy-revalidate  | 与 must-revalidate 作用相同，但它仅适用于共享�
 对于开发者来说，我们通过 `performence` 记录的过程节点，就可以清楚地看到哪个过程耗时比较长，就可以有针对地进行优化。
 
 ## 相关面试题汇总
+
+### TCP
+
+**1. 明明两次握手就能确定的连接，为什么需要三次握手？**
+
+> 这是因为在建立连接过程中，服务端在收到客户但建立连接请求的 `SYN` 报文后，会把 `ACK` 和 `SYN` 放在一个报文里发送给客户端。
+> 而关闭连接时，服务端收到客户端的 `FIN` 报文，只是表示客户端不再发送数据了，但是还能接收数据，而且这会儿服务端可能还有数据没有发送完，不能马上发送 `FIN` 报文，只能先发送 `ACK` 报文，先响应客户端，在确认自己这边所有数据发送完毕以后，才会发送 `FIN`。
+> 所以，在断开连接时，服务器的 `ACK` 和 `FIN` 一般都会单独发送，这就导致了断开连接比请求连接多了一次发送操作。
+
+
+**2. 为什么建立连接有三次握手，而断开连接却有四次？**
+
+> 这是因为在建立连接过程中，服务端在收到客户但建立连接请求的 `SYN` 报文后，会把 `ACK` 和 `SYN` 放在一个报文里发送给客户端。
+> 而关闭连接时，服务端收到客户端的 `FIN` 报文，只是表示客户端不再发送数据了，但是还能接收数据，而且这会儿服务端可能还有数据没有发送完，不能马上发送 `FIN` 报文，只能先发送 `ACK` 报文，先响应客户端，在确认自己这边所有数据发送完毕以后，才会发送 `FIN`。
+> 所以，在断开连接时，服务器的 `ACK` 和 `FIN` 一般都会单独发送，这就导致了断开连接比请求连接多了一次发送操作。
+
+### http
