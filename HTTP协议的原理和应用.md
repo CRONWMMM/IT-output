@@ -32,7 +32,7 @@
 上述流程可以看作是一个应用在完整网络通信过程中的实践场景，其中带出了很多网络通信的知识点，下面就以这条线为索引，对其中涉及到的知识碎片进行阐述和说明。
 
 ## 经典网络五层模型
-![经典网络五层模型](https://github.com/CRONWMMM/IT-output/blob/master/images/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B.png)
+![经典网络五层模型](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B.png)
 
 在每台计算机设备上，都有这么一套系统链路的关系，来保证网络传输的正常进行，因为统一集成了这么一套经典模型，所以自己使用的计算机也是可以作为一台服务器来提供网络服务的。
 
@@ -56,7 +56,7 @@
 
 当我们在浏览器地址栏里输入域名的那一刻，其实已经和这三个概念牵扯上了联系。
 
-![URI、URL和URN](https://github.com/CRONWMMM/IT-output/blob/master/images/URI_URL_URN.jpg)
+![URI、URL和URN](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/URI_URL_URN.jpg)
 
 ### URI 
  - Uniform Resource Identifier，统一资源标识符，简称为 `URI`。
@@ -66,7 +66,7 @@
 ### URL
 Uniform Resource Locator，统一资源定位符，简称 `URL`，下图是一个完整的 `URL` 组成。
 
-![URL 完整组成格式](https://github.com/CRONWMMM/IT-output/blob/master/images/URL%E5%AE%8C%E6%95%B4%E7%BB%84%E6%88%90%E6%A0%BC%E5%BC%8F.jpg)
+![URL 完整组成格式](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/URL%E5%AE%8C%E6%95%B4%E7%BB%84%E6%88%90%E6%A0%BC%E5%BC%8F.jpg)
 
 一个完整的 `URL` 从左到右包含如下部分：
 1. **schema** 标识了这个资源地址所基于的访问协议，常见的比如：`HTTP` 和 `FTP`。
@@ -116,7 +116,7 @@ Uniform Resource Name，统一资源名称，简称 `URN`，它的用处简单�
 ## TCP 的三次握手和四次挥手
 ### 三次握手
 
-![TCP 的三次握手](https://github.com/CRONWMMM/IT-output/blob/master/images/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
+![TCP 的三次握手](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
 
 > 提示：关于 `ACK`、`FIN`、`SYN` 状态码的含义
 > 1. `ACK` 用于确认，表示通知对方，我已经收到你发来的信息了。
@@ -135,7 +135,7 @@ Uniform Resource Name，统一资源名称，简称 `URN`，它的用处简单�
 
 ### 四次挥手
 
-![TCP 的四次挥手](https://github.com/CRONWMMM/IT-output/blob/master/images/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg)
+![TCP 的四次挥手](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg)
 
 和建立 `TCP` 连接类似，断开 `TCP` 连接也同样需要客户端于服务端的双向交流，因为整个断开动作需要双端共发送 4 个数据包才能完成，所以简称为“四次挥手”。
 1. 第一次挥手：客户端认为自己这边的数据已经全部发送完毕了，于是发送一个 `FIN` 用来关闭客户端到服务端的数据传输，发送完成以后，客户端进入 `FIN_WAIT_1` 状态。
@@ -201,7 +201,7 @@ Uniform Resource Name，统一资源名称，简称 `URN`，它的用处简单�
 ## HTTP 的报文组成
 `HTTP` 是以请求和响应的形式存在的，由于发起方主动发起一个 `HTTP` 请求，然后由响应方回应，双方按照一定的报文格式进行数据的互传，一个完整的 `HTTP` 报文通常由 **首行**、**首部** 和 **主体** 构成。 
 
-![HTTP报文格式](https://github.com/CRONWMMM/IT-output/blob/master/images/HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F.jpg)
+![HTTP报文格式](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/HTTP%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F.jpg)
 
 ### 首行
 首行并不属于 `Http Headers` ，它包含了：
@@ -223,7 +223,7 @@ Uniform Resource Name，统一资源名称，简称 `URN`，它的用处简单�
 4. **HTTP 返回状态码**（响应报文首行包含）
     > `HTTP` 定义了40个标准状态代码，可用于传递客户端请求的结果，状态代码分为以下五类，关于各个分段下的返回状态码信息可以参考 [HTTP 响应码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)：
     
-    ![HTTP 返回码](https://github.com/CRONWMMM/IT-output/blob/master/images/HTTP%E8%BF%94%E5%9B%9E%E7%A0%81%EF%BC%88%E5%A4%A7%E7%B1%BB%EF%BC%89.jpg)
+    ![HTTP 返回码](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/HTTP%E8%BF%94%E5%9B%9E%E7%A0%81%EF%BC%88%E5%A4%A7%E7%B1%BB%EF%BC%89.jpg)
     
     > 这边需要注意的一点是，一个好的 HTTP 应用服务应该是有完善的 HTTP status code 的返回信息的，即访问者单从 HTTP status code 上就能得知当前 HTTP 请求的状态信息。
     而目前我们大部分的开发模式下的 HTTP 返回码，只有 `200` 和 `500`。服务端的同学会先把 `200` 返回过来，然后再告诉你出了什么 “没登录” / “没认证” / “没权限” 这一类的问题。
@@ -236,69 +236,24 @@ HTTP 头信息，即 `HTTP Header`，首行换行后的信息都是 `HTTP Header
 ### 主体
 主体，即 `HTTP body`，`HTTP Header` 信息和主体信息间以一个空行 + 一个换行来区分。`HTTP body` 里一般会放置请求的一些具体业务信息
 
-## 浏览器的同源策略
+## HTTP 长连接
 
-> 浏览器的同源限制：当**浏览器**访问 URL 地址的**协议（schema）/ 端口（port）/ 域名（host）**，三者中有任何一个与当前的 URL 片段信息不匹配的时候，便存在跨域问题。
+每一个 `HTTP` 请求都需要在 `TCP` 连接通道里才能完成发送和接受。在 `HTTP` 协议的早期版本里，每一条 `HTTP` 请求发送之前，都会创建一条新的 `TCP` 连接通道，在这个请求完成以后，该条 `TCP` 通道就会自动关闭。
+这样带来的问题就是，单条 `TCP` 连接没有办法复用，造成很大的新能浪费。好在这一问题随着 `HTTP` 协议的逐步完善已经得到解决。
 
-当前地址                   | 请求地址                   | 请求是否成功
----                       | ---                       | ---
-https://www.juejin.com:80 | http://www.juejin.com:80  |跨域（协议不同）
-https://www.juejin.com:80 | https://www.juejin.cn:80  |跨域（域名不同）
-https://www.juejin.com:80 | https://www.juejin.com:90 |跨域（端口不同）
+在 `HTTP 1.0` 中引入的 `Connection` 头字段，允许对其设置 `Keep-Alive` 或者是 `Close` 来决定是否需要复用 TCP 连接，还是说在一次请求完成之后直接关闭。而在 `HTTP 1.1` 中默认双端都会默认开启这个字段，即默认支持 `HTTP` 的长连接。
 
-对于跨域的几点需要明确：
-1. **跨域，是浏览器提供的一种保护手段**，服务端是不存在跨域这一说的。这也就是为什么现在前后端分离的开发模式下，前端比较依赖 `webpack-dev-server` 启动代理服务来中转和代理后台接口的原因，因为两个服务器之间相互通信是没有跨域障碍的。
-2. **跨域，是对于 XMLHttpRequest 来说的，浏览器获取不同源服务器下的静态资源，是没有跨域限制的**，这也是 `JSONP` 跨域请求得以实现的本质。
-3. 不同于 XMLHttpRequest 的是，**通过 src 属性加载的脚本资源，浏览器限制了 Javascript 的权限，使其不能读写、返回内容**。
-4. 对于浏览器来说，除了 DOM 、Cookie、XMLHttpRequest 会收到同源策略限制以外，一些常见的插件，比如 Flash、Java Applet 、Silverlight、Google Gears 等也都有自己的控制策略。
+![Connection-Keep-Alive](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/connect-keepAlive.jpg)
 
-> 当浏览器向不同域的服务器发送请求时，请求是真能发出去，对方服务端也是真能接收到请求，并且真能给你的浏览器响应，浏览器也真能接收到有效数据。
-> 但是，如果在跨域的情况下、服务端返回数据的响应头里的 `Access-Control-Allow-Origin` 字段，没有把当前域名列进白名单，那么浏览器会把服务端返回的数据给藏起来，不告诉你，然后给你抛个 `Access-Control-Allow-Origin` 的错误。
+> 需要注意的是：`Connection: Keep-Alive` 需要双端同时开启才能启动 `HTTP` 长连接，如果任何一段手动设置 `Connection` 为 `Close`，长连接都无法位置，因为 TCP 连接的建立和持久保持是一个双端交互的过程。
 
-> 至于为什么资源文件不受同源策略限制呢？可以试想一下，如果资源文件也被限制跨域，那么现在大量使用的 CDN 缓存策略基本就没办法用了。而且现在很多网站的资源文件，都会放到云服务器的 OSS 上，OSS 资源对应的 url 地址肯定是不同域的，那这些资源也不能使用了。
+那么我们在本地如何看到 `TCP` 的连接 ID 呢，可以打开 `Chrome` 的调试工具来查看：
 
-### Access-Control-Allow-Origin
-`Access-Control-Allow-Origin` 标识了服务器允许的跨域白名单，它有以下几种设置方法：
-1. 直接设置 `*` 通配符，简单粗暴，但是这么做等于把服务器的所有接口资源对外完全暴露，是不安全的。
-2. 设置制定域，比如 `Access-Control-Allow-Origin: https://www.baidu.com` ，这样只会允许指定域的请求进行跨域访问。
-3. 由后端动态设置。`Access-Control-Allow-Origin` 限制只能写一个白名单，但是当我们有多个域都需要跨域请求怎么呢？这个时候，这时可以由服务端自己维护一套白名单列表，在请求进来的时候对请求的源 `host` 进行白名单比对，如果在白名单中，就将这个 `Access-Control-Allow-Origin` 动态设置上去，然后返回响应。
+![Connection-Keep-Alive](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/connection-id.jpg)
 
-### CORS 的预请求
-如果我们像上面一样，只设置的 `Access-Control-Allow-Origin` 白名单，是否就可以完全畅通无阻地进行跨域了呢？并不是。
-就算对端开启了域名白名单认证，然鹅有一些操作仍然是需要进一步认证的，这种进一步的认证操作，就是 `CORS 预请求`。
+图上可以看到有不同的 `Connection ID`，这就代表着本次请求实际上是开启了一个新的 `TCP` 连接，最下面的请求的 `Connection ID` 都是相同的，代表着多个 `HTTP` 请求复用了同一个 `TCP` 连接。
 
-### 预请求触发过程
-浏览器预请求的触发条件，**是判断本次请求是否属于一个简单请求**。
-如果本次请求属于一个**复杂请求**，那么在发送正式的跨域请求之前，浏览器会先准备一个名为 `OPTIONS` 的 `HTTP Method` ，作为预请求发送。
-在服务器通过预请求后，下面浏览器才会发生正式的数据请求。整个请求过程其实是发生了两次请求：一个预检请求，以及后续的实际数据请求。
-
-![OPTIONS预请求案例](https://github.com/CRONWMMM/IT-output/blob/master/images/OPTIONS预请求案例.jpg)
-
-### 简单请求
-1. 请求方式只能是 `GET` `POST` `HEAD`
-2. 请求头字段只允许：
-    - `Accept`
-    - `Accept-Language`
-    - `Content-Language`
-    - `Content-Type`
-3. `Content-Type` 的值仅限于：
-    - `text/plain`
-    - `multipart/form-data`
-    - `application/x-www-form-urlencoded`
-4. `XMLHttpRequestUpload` 对象均没有注册任何事件监听器（了解就好）。
-5. 请求中没有使用 `ReadableStream` 对象（了解就好）。
-
-### 复杂请求
-除了简单请求里定义的，都是复杂请求，统统需要预请求。
-
-### 预请求的验证
-那么怎样使预检请求成功认证呢？还是需要服务端继续帮忙设置请求头的白名单：
-
-1. `Access-Control-Allow-Headers`，设置允许的额外请求头字段。
-2. `Access-Control-Allow-Methods`，设置允许的额外请求方法。
-3. `Access-Control-Max-Age` （单位/秒），指定了预请求的结果能够被缓存多久，在这个时间范围内，再次发送跨域请求不会被预检。
-
-> 更多、更具体的跨域限制策略可以[点击这里查看更多](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+> 浏览器所能够支持的最大并发 TCP 连接数是 **6个**，并且在 `HTTP 2.0` 以下的 `HTTP` 版本中，请求是阻塞的。也就是说，一旦六个连接开满，前面的请求未完成，那么后续请求就会被阻塞，直到前面的请求返回，后续才能继续发送。
 
 ## HTTP 缓存
 
@@ -308,7 +263,7 @@ https://www.juejin.com:80 | https://www.juejin.com:90 |跨域（端口不同）
 
 前端环境下的文件缓存，分为几个不同的位置。当我们打开 Chrome 控制台，查看 Network 下每条请求记录的 size 选项，会发现非常丰富的来源信息。
 
-![缓存位置图示](https://github.com/CRONWMMM/IT-output/blob/master/images/%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE.jpg)
+![缓存位置图示](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE.jpg)
 
 对于前端浏览器环境来说，缓存读取位置是由先后顺序的，顺序分别是（由上到下寻找，找到即返回；找不到则继续）
 - Service Worker
@@ -360,7 +315,7 @@ no-cache          | 强制确认缓存：即每次使用本地缓存之前，需
 must-revalidate   | 缓存验证确认：意味着缓存在考虑使用一个陈旧的资源时，必须先验证它的状态，已过期的缓存将不被使用
 proxy-revalidate  | 与 must-revalidate 作用相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略。
 
-![Cache-Control 流程图](https://github.com/CRONWMMM/IT-output/blob/master/images/Cache-Control.jpg)
+![Cache-Control 流程图](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/Cache-Control.jpg)
 
 ### 缓存校验
 
@@ -377,11 +332,11 @@ proxy-revalidate  | 与 must-revalidate 作用相同，但它仅适用于共享�
 
 当请求服务端的 `script.js` 的脚本资源时，可以看到服务端返回了 `Last-Modified`，里面记录了该资源最后一次的修改时间
 
-![Last-Modified](https://github.com/CRONWMMM/IT-output/blob/master/images/Last-Modified.jpg)
+![Last-Modified](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/Last-Modified.jpg)
 
 当客户端下次再次发起请求，会携带上这个过期时间给服务端进行验证
 
-![If-Modified-since.jpg](https://github.com/CRONWMMM/IT-output/blob/master/images/If-Modified-since.jpg)
+![If-Modified-since.jpg](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/If-Modified-since.jpg)
 
 来看下服务端的部分代码：
 
@@ -446,6 +401,70 @@ http.createServer((request, response) => {
 
 浏览器控制台里有一个选项 `performence` ，它会为我们记录 HTTP 请求发起到页面渲染完成这段过程中的每一个过程点，在 HTTP 请求和浏览器渲染的过程中存在着时间的消耗，这个 `performence`，可以为我们记录每个时间点上所消耗的时间。
 对于开发者来说，我们通过 `performence` 记录的过程节点，就可以清楚地看到哪个过程耗时比较长，就可以有针对地进行优化。
+
+## 浏览器的同源策略
+
+> 浏览器的同源限制：当**浏览器**访问 URL 地址的**协议（schema）/ 端口（port）/ 域名（host）**，三者中有任何一个与当前的 URL 片段信息不匹配的时候，便存在跨域问题。
+
+当前地址                   | 请求地址                   | 请求是否成功
+---                       | ---                       | ---
+https://www.juejin.com:80 | http://www.juejin.com:80  |跨域（协议不同）
+https://www.juejin.com:80 | https://www.juejin.cn:80  |跨域（域名不同）
+https://www.juejin.com:80 | https://www.juejin.com:90 |跨域（端口不同）
+
+对于跨域的几点需要明确：
+1. **跨域，是浏览器提供的一种保护手段**，服务端是不存在跨域这一说的。这也就是为什么现在前后端分离的开发模式下，前端比较依赖 `webpack-dev-server` 启动代理服务来中转和代理后台接口的原因，因为两个服务器之间相互通信是没有跨域障碍的。
+2. **跨域，是对于 XMLHttpRequest 来说的，浏览器获取不同源服务器下的静态资源，是没有跨域限制的**，这也是 `JSONP` 跨域请求得以实现的本质。
+3. 不同于 XMLHttpRequest 的是，**通过 src 属性加载的脚本资源，浏览器限制了 Javascript 的权限，使其不能读写、返回内容**。
+4. 对于浏览器来说，除了 DOM 、Cookie、XMLHttpRequest 会收到同源策略限制以外，一些常见的插件，比如 Flash、Java Applet 、Silverlight、Google Gears 等也都有自己的控制策略。
+
+> 当浏览器向不同域的服务器发送请求时，请求是真能发出去，对方服务端也是真能接收到请求，并且真能给你的浏览器响应，浏览器也真能接收到有效数据。
+> 但是，如果在跨域的情况下、服务端返回数据的响应头里的 `Access-Control-Allow-Origin` 字段，没有把当前域名列进白名单，那么浏览器会把服务端返回的数据给藏起来，不告诉你，然后给你抛个 `Access-Control-Allow-Origin` 的错误。
+
+> 至于为什么资源文件不受同源策略限制呢？可以试想一下，如果资源文件也被限制跨域，那么现在大量使用的 CDN 缓存策略基本就没办法用了。而且现在很多网站的资源文件，都会放到云服务器的 OSS 上，OSS 资源对应的 url 地址肯定是不同域的，那这些资源也不能使用了。
+
+### Access-Control-Allow-Origin
+`Access-Control-Allow-Origin` 标识了服务器允许的跨域白名单，它有以下几种设置方法：
+1. 直接设置 `*` 通配符，简单粗暴，但是这么做等于把服务器的所有接口资源对外完全暴露，是不安全的。
+2. 设置制定域，比如 `Access-Control-Allow-Origin: https://www.baidu.com` ，这样只会允许指定域的请求进行跨域访问。
+3. 由后端动态设置。`Access-Control-Allow-Origin` 限制只能写一个白名单，但是当我们有多个域都需要跨域请求怎么呢？这个时候，这时可以由服务端自己维护一套白名单列表，在请求进来的时候对请求的源 `host` 进行白名单比对，如果在白名单中，就将这个 `Access-Control-Allow-Origin` 动态设置上去，然后返回响应。
+
+### CORS 的预请求
+如果我们像上面一样，只设置的 `Access-Control-Allow-Origin` 白名单，是否就可以完全畅通无阻地进行跨域了呢？并不是。
+就算对端开启了域名白名单认证，然鹅有一些操作仍然是需要进一步认证的，这种进一步的认证操作，就是 `CORS 预请求`。
+
+### 预请求触发过程
+浏览器预请求的触发条件，**是判断本次请求是否属于一个简单请求**。
+如果本次请求属于一个**复杂请求**，那么在发送正式的跨域请求之前，浏览器会先准备一个名为 `OPTIONS` 的 `HTTP Method` ，作为预请求发送。
+在服务器通过预请求后，下面浏览器才会发生正式的数据请求。整个请求过程其实是发生了两次请求：一个预检请求，以及后续的实际数据请求。
+
+![OPTIONS预请求案例](https://github.com/CRONWMMM/IT-output/blob/master/HTTP&TCPIP/OPTIONS预请求案例.jpg)
+
+### 简单请求
+1. 请求方式只能是 `GET` `POST` `HEAD`
+2. 请求头字段只允许：
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type`
+3. `Content-Type` 的值仅限于：
+    - `text/plain`
+    - `multipart/form-data`
+    - `application/x-www-form-urlencoded`
+4. `XMLHttpRequestUpload` 对象均没有注册任何事件监听器（了解就好）。
+5. 请求中没有使用 `ReadableStream` 对象（了解就好）。
+
+### 复杂请求
+除了简单请求里定义的，都是复杂请求，统统需要预请求。
+
+### 预请求的验证
+那么怎样使预检请求成功认证呢？还是需要服务端继续帮忙设置请求头的白名单：
+
+1. `Access-Control-Allow-Headers`，设置允许的额外请求头字段。
+2. `Access-Control-Allow-Methods`，设置允许的额外请求方法。
+3. `Access-Control-Max-Age` （单位/秒），指定了预请求的结果能够被缓存多久，在这个时间范围内，再次发送跨域请求不会被预检。
+
+> 更多、更具体的跨域限制策略可以[点击这里查看更多](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 
 ## 相关面试题汇总
 

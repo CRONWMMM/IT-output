@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="924f95bf-0312-4664-99db-48e16f765390" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTTP协议的原理和应用.md" beforeDir="false" afterPath="$PROJECT_DIR$/HTTP协议的原理和应用.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Cache-Control.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/HTTP报文格式.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/HTTP返回码（大类）.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/If-Modified-since.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Last-Modified.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/OPTIONS预请求案例.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/TCP三次握手.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/TCP四次挥手.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/URI_URL_URN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/URI_URL_URN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/URL完整组成格式.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/经典网络五层模型.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/缓存位置.jpg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,8 +33,8 @@
         <entry file="file://$PROJECT_DIR$/HTTP协议的原理和应用.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="295">
-                <caret line="425" lean-forward="true" selection-start-line="425" selection-end-line="425" />
+              <first_editor relative-caret-position="495">
+                <caret line="255" column="106" selection-start-line="255" selection-start-column="106" selection-end-line="255" selection-end-column="106" />
               </first_editor>
               <second_editor />
             </state>
@@ -52,6 +65,7 @@
       <find>HTTP2</find>
       <find>DNS</find>
       <find>为什么建立连接有三次握手，而断开连接却有四次？</find>
+      <find>images</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -77,6 +91,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -93,7 +108,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -145,7 +159,8 @@
       <workItem from="1565920000024" duration="876000" />
       <workItem from="1566363139078" duration="1606000" />
       <workItem from="1566384987769" duration="27000" />
-      <workItem from="1567559975699" duration="16330000" />
+      <workItem from="1567559975699" duration="18074000" />
+      <workItem from="1567646207163" duration="6001000" />
     </task>
     <task id="LOCAL-00001" summary="浅谈 JS Event Loop">
       <created>1564378402801</created>
@@ -378,17 +393,31 @@
       <option name="project" value="LOCAL" />
       <updated>1567566692224</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="HTTP协议的原理和应用">
+      <created>1567595338224</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1567595338224</updated>
+    </task>
+    <task id="LOCAL-00035" summary="HTTP协议的原理和应用">
+      <created>1567648688293</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1567648688293</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109667000" />
+    <option name="totallyTimeSpent" value="117412000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09747102" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.09747102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -407,7 +436,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09747102" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09747102" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -499,24 +528,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/基础多页应用项目架构.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="7245">
-            <caret line="315" column="38" selection-start-line="315" selection-start-column="38" selection-end-line="315" selection-end-column="38" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/Cache-Control.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/HTTP协议的原理和应用.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="295">
-            <caret line="425" lean-forward="true" selection-start-line="425" selection-end-line="425" />
+          <first_editor relative-caret-position="495">
+            <caret line="255" column="106" selection-start-line="255" selection-start-column="106" selection-end-line="255" selection-end-column="106" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/基础多页应用项目架构.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="7245">
+            <caret line="315" column="38" selection-start-line="315" selection-start-column="38" selection-end-line="315" selection-end-column="38" />
           </first_editor>
           <second_editor />
         </state>
